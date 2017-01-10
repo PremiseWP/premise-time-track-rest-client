@@ -49,7 +49,7 @@ $access_token = $args['tokenCredentials'];
 	<?php foreach ( (array) $clients as $client ) : ?>
 
 		<li>
-			<a href="?step=show-taxonomy&amp;taxonomy-url=<?php echo rawurlencode( $client['link'] ); // Open link in iframe! ?>">
+			<a href="?step=show-wordpress&amp;url=<?php echo rawurlencode( $client['link'] ); // Open link in iframe! ?>">
 				<?php echo htmlspecialchars( $client['name'] ); ?>
 			</a>
 		</li>
@@ -67,7 +67,7 @@ $access_token = $args['tokenCredentials'];
 	<?php foreach ( (array) $projects as $project ) : ?>
 
 		<li>
-			<a href="?step=show-taxonomy&amp;taxonomy-url=<?php echo rawurlencode( $project['link'] ); // Open link in iframe! ?>">
+			<a href="?step=show-wordpress&amp;url=<?php echo rawurlencode( $project['link'] ); // Open link in iframe! ?>">
 				<?php echo htmlspecialchars( $project['name'] ); ?>
 			</a>
 		</li>
