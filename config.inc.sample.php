@@ -3,4 +3,9 @@
  * Configuration
  */
 
-define( 'WORDPRESS_URI', 'http://localhost/test/premisesplitview/' );
+/**
+ * Wordpress URI
+ * Leave empty for Step 1: Discovery
+ * Set Wordpress URI to skip it.
+ */
+define( 'WORDPRESS_URI', '' );
