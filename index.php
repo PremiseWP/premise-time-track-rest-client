@@ -30,8 +30,8 @@ $here = get_requested_url();
 
 // What should we show?
 $step = isset( $_GET['step'] ) ? $_GET['step'] : '';
-$_SESSION['is_iframe'] = ( ! isset( $_SESSION['is_iframe'] ) && isset( $_GET['is_iframe'] ) ) ?
-	$_GET['is_iframe'] : '';
+//$_SESSION['is_iframe'] = ( ! isset( $_SESSION['is_iframe'] ) && isset( $_GET['is_iframe'] ) ) ?
+	//$_GET['is_iframe'] : '';
 
 // Session & authenticated?
 if ( ! $step
@@ -77,9 +77,8 @@ switch ( $step ) {
 			! empty( $_GET['uri'] ) ) {
 
 			$uri = $_GET['uri'];
-		}
 
-		if ( defined( 'WORDPRESS_URI' ) ) {
+		} elseif ( defined( 'WORDPRESS_URI' ) ) {
 
 			$uri = WORDPRESS_URI;
 		}
