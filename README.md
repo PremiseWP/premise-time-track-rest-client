@@ -1,6 +1,6 @@
 # Premise Time Track REST Client
 
-This is a client for the Wordpress REST API, using OAuth 1.0a to use the .
+This is a client for the Wordpress REST API, using OAuth 1.0a to connect to the Premise Time Tracker plugin.
 
 This is *also* the repository for a WordPress provider for the [OAuth 1.0a client library][league-oauth] by the League of Extraordinary Packages.
 
