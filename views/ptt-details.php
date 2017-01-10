@@ -122,7 +122,7 @@ $access_token = $args['tokenCredentials'];
 
 // Send message to Chrome extension from iframe
 // in order to save credentials in LocalStorage.
-if ( $_SESSION['is_iframe'] ) : ?>
+//if ( $_SESSION['is_iframe'] ) : ?>
 <script>
 // Called sometime after postMessage is called
 function receiveMessage(event)
@@ -155,4 +155,4 @@ function receiveMessage(event)
 
 window.addEventListener("message", receiveMessage, false);
 </script>
-<?php endif;
+<?php //endif;
