@@ -12,7 +12,7 @@ if ( ! $timers ) : ?>
 	<ul>
 	<?php foreach ( (array) $timers as $timer ) : ?>
 		<li>
-			<a href="<?php echo rawurlencode( $timer['link'] ); ?>">
+			<a href="?step=show-wordpress&amp;url=<?php echo rawurlencode( $timer['link'] ); ?>">
 				<?php echo htmlspecialchars( $timer['title']['raw'] ); ?>
 			</a>
 		</li>

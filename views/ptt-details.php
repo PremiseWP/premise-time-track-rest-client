@@ -83,7 +83,7 @@ $access_token = $args['tokenCredentials'];
 	<?php foreach ( (array) $timesheets as $timesheet ) : ?>
 
 		<li>
-			<a href="?step=show-taxonomy&amp;taxonomy-url=<?php echo rawurlencode( $timesheet['link'] ); // Open link in iframe! ?>">
+			<a href="?step=show-wordpress&amp;url=<?php echo rawurlencode( $timesheet['link'] ); // Open link in iframe! ?>">
 				<?php echo htmlspecialchars( $timesheet['name'] ); ?>
 			</a>
 		</li>

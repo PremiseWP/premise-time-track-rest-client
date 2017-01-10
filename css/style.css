@@ -178,16 +178,16 @@ a.button {
 /**
  * Show taxonomy.
  */
-.show-taxonomy .container {
+.show-wordpress .container {
 	padding: 0;
 	height: 427px;
 }
 
-.show-taxonomy .button {
+.show-wordpress .button {
 	margin: 4.7% 6%;
 }
 
-.taxonomy-iframe {
+.wordpress-iframe {
 	width: 100%;
 	height: 361px;
 	border: 0;

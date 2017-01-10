@@ -302,7 +302,7 @@ switch ( $step ) {
 		header( "Location: {$here}?step=ptt-details&error={$error}" );
 		return;
 
-	case 'show-taxonomy':
+	case 'show-wordpress':
 
 		// Check somebody hasn't manually entered this URL in,
 		// by checking that we have the token credentials in
@@ -312,23 +312,23 @@ switch ( $step ) {
 			exit(1);
 		}
 
-		// Taxonomy URL.
-		$taxonomy_url = isset( $_GET['taxonomy-url'] ) ? $_GET['taxonomy-url'] : '';
+		// URL.
+		$url = isset( $_GET['url'] ) ? $_GET['url'] : '';
 
 		// Check it!
-		if ( strpos( $taxonomy_url, WORDPRESS_URI ) !== 0 ) {
+		if ( strpos( $url, substr( $_SESSION['site_base'], 0, -8 ) ) !== 0 ) {
 
 			// Redirect to ptt-details + error.
-			$error = 'Malformed taxonomy URL.';
+			$error = 'Malformed Wordpress URL.';
 
-			$error = urlencode( $error );
+			$error = urlencode( $error . var_dump($url) );
 
 			// Redirect to the ptt details.
 			header( "Location: {$here}?step=ptt-details&error={$error}" );
 			return;
 		}
 
-		return output_page( load_template( 'show-taxonomy', compact( 'taxonomy_url' ) ), 'Timer taxonomy' );
+		return output_page( load_template( 'show-wordpress', compact( 'url' ) ), 'Timer page' );
 
 	case 'ajax-search-timers':
 
