@@ -1,6 +1,10 @@
 <?php
-
-// Display timers results.
+/**
+ * Display timers results.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
 
 $timers = $args['timers'];
 

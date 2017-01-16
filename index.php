@@ -1,4 +1,9 @@
 <?php
+/**
+ * Application index.
+ *
+ * @package PTTRC
+ */
 
 namespace WP_REST\ExampleClient\WebDemo;
 
@@ -20,7 +25,7 @@ if ( ! include_once __DIR__ . '/config.inc.php' ) {
 	die ( 'config.inc.php file not found. Please read the installation directions.' );
 }
 
-require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/includes/helpers.php';
 
 // Start session
 session_start();

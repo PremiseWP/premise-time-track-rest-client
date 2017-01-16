@@ -1,4 +1,10 @@
 <?php
+/**
+ * Application index.
+ *
+ * @package PTTRC
+ * @subpackage includes
+ */
 
 namespace WP_REST\ExampleClient\WebDemo;
 
@@ -8,7 +14,7 @@ function output_page( $content, $title = 'Discover', $error = '' ) {
 
 	global $class;
 
-	require __DIR__ . '/views/layout.php';
+	require __DIR__ . '/../views/layout.php';
 };
 
 function load_template( $template, $args = array() ) {
@@ -18,7 +24,7 @@ function load_template( $template, $args = array() ) {
 	$class = $template;
 
 	ob_start();
-	require __DIR__ . '/views/' . $template . '.php';
+	require __DIR__ . '/../views/' . $template . '.php';
 	return ob_get_clean();
 }
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * PTT details.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
 
 /** @var \League\OAuth1\Client\Server\User */
 // $ptts = $args['ptts'];

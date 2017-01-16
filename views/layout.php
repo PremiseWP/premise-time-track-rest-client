@@ -1,3 +1,11 @@
+<?php
+/**
+ * Main layout.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
+?>
 <!DOCTYPE html>
 <html>
 	<head>

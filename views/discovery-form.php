@@ -1,3 +1,11 @@
+<?php
+/**
+ * Discovery form.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
+?>
 <form action="" method="GET">
 	<input type="hidden" name="step" value="discover" />
 

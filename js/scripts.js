@@ -1,5 +1,8 @@
 /**
  * Javascripts
+ *
+ * @package PTTRC
+ * @subpackage js
  */
 
 $(document).ready(function(){

@@ -1,4 +1,10 @@
 <?php
+/**
+ * PremiseWP model.
+ *
+ * @package PTTRC
+ * @subpackage lib
+ */
 
 namespace WP_REST\ExampleClient;
 

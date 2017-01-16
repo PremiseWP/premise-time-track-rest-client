@@ -1,3 +1,11 @@
+<?php
+/**
+ * Credentials form.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
+?>
 <form action="" method="GET">
 	<input type="hidden" name="step" value="preauth" />
 

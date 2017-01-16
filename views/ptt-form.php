@@ -1,4 +1,10 @@
 <?php
+/**
+ * New PTT form.
+ *
+ * @package PTTRC
+ * @subpackage views
+ */
 
 /** @var \League\OAuth1\Client\Server\User */
 $ptt = $args['ptt'];

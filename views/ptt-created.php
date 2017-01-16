@@ -1,8 +1,9 @@
 <?php
 /**
- * Thank you!
- *
  * PTT created confirmation screen.
+ *
+ * @package PTTRC
+ * @subpackage views
  */
 ?>
 <h1>Thank You!</h1>

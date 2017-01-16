@@ -1,6 +1,8 @@
 <?php
 /**
  * Configuration
+ *
+ * @package PTTRC
  */
 
 /**
