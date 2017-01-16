@@ -85,6 +85,17 @@ The demo client will then complete the process by exchanging the temporary crede
 
 We display the Timers details, which should let you verify that we're getting the real details from the site.
 
+### 400 No Oauth parameters supplied error
+
+If you experience a "400 No Oauth parameters supplied error", this may be due to the Authorization header blocked.
+Edit your **Wordpress** `.htaccess` file this way:
+
+```
+# REST API fix 400 error.
+# RewriteRule ^index\.php$ - [L]
+RewriteRule ^index\.php$ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+```
+
 ## License
 
 This project is licensed under the MIT license. See [LICENSE.md](LICENSE.md) for the full license.
