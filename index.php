@@ -235,6 +235,13 @@ switch ( $step ) {
 			$ptt = array();
 		}
 
+		try {
+			$taxonomies = $server->fetchPremiseTimeTrackerTaxonomies( $tokenCredentials );
+		}
+		catch ( Exception $e ) {
+			$error = $e->getMessage();
+			return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'Timer form', $error );
+		}
 		//var_dump($ptt);
 
 		if ( isset( $_GET['error'] )
@@ -243,7 +250,7 @@ switch ( $step ) {
 			$error = $_GET['error'];
 		}
 
-		return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'Timer form', $error );
+		return output_page( load_template( 'ptt-form', compact( 'ptt', 'taxonomies' ) ), 'Timer form', $error );
 
 	case 'ptt-save':
 		$server = get_server();

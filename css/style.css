@@ -7,7 +7,7 @@
 
 * {
 	box-sizing: border-box;
- 	word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 body,
@@ -24,7 +24,7 @@ button {
 	font-weight: 100;
 	font-style: normal;
 	font-stretch: normal;
- 	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 html, body {
@@ -68,6 +68,12 @@ code, pre {
 	font-size: 0.9em;
 }
 
+hr {
+	height: 2px;
+	border:0 none;
+	background: #979797;
+}
+
 a {
 	color: #5d5d5d;
 }
@@ -77,6 +83,11 @@ input, textarea {
 	padding: 0 .5em;
 	border: 1px solid #888;
 	line-height: 30px;
+}
+
+input[type="checkbox"] {
+	display: inline-block;
+	margin-left: 0;
 }
 
 label > input,
@@ -119,6 +130,38 @@ a.button {
 	padding: 1em;
 }
 
+
+/**
+ * Checkboxes
+ * @link http://stackoverflow.com/questions/4148499/how-to-style-checkbox-using-css
+ */
+.checkbox:before{
+	position: relative;
+	display: block;
+	width: 10px;
+	height: 10px;
+	content: "";
+	background: #fff;
+}
+.checkbox:after{
+	position: relative;
+	display: block;
+	left: 2px;
+	top: -10px;
+	width: 10px;
+	height: 10px;
+	border: 1px solid #979797;
+	content: "";
+	background: #fff;
+}
+.checkbox:checked:after{
+	/* https://www.base64-image.de/ */
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIBswtNpAAAAI3RSTlMAEeCX9/wJBQHz0+4651u/dUVRtWlvjCUwfR2eKRjIpWPYhn4JrZEAAAHjSURBVHhexZXdjoIwEIX7TwsgIIiCiuJ5/3fcBJo27g0wJLvfJeFLOzOHgf0rduCHfN5OktN1mzcK+k4/vioAuI5+vAZQtIbmm1YAQFpbmj9IBQDljdHISwDQr4GmJycBAKojTpD3bvZ7Yvuedw0Arkpo/qPB7F+Ifj7Ofkb16+nQ+fYsjvmnAkf6Z98ZlvnR/KRdfP0xx3xJ86338eKH6kc5HPNT4vfr54eipvln77u3peVXYEZ3tADcUiw0T5J/Hb2fPkj+s/F+dqbo1kjv696SAtwrLDScFoDM+xMtQbnwvnqvXTXvpaxuv8ocSnjuZmVUcr6qqL7eCw1Eel2JWooF1RkWsK3CgjutRF3AA1XFKvICHmm2+kCRhwSVWwv4KATivJMOHrVSADOVQ0Sd/S8gPHyZ1bhdHCKNmeeSwiM2RCipFAKuZoyZOzy62hT5j0bgnjB2UvCUnG2BvxAQD/YIBWRbt2BUgEsSCoDcvMXipdG0Dp5p+xYysQiVwaMve3anQCR2cAc9fuP2rcEh9jFugV20Gl8U+d4NPuKLzrKdXL786cr2chWI6IrtxkpERsqfsHbBz06MAC+9rss6IfghTEXPGY08m8uvLSPCR0DJgdHpIN6GHeBc5pYdgT/Zn/MDb2hb7+YGE+UAAAAASUVORK5CYII=');
+	background-size: contain;
+}
+.checkbox:disabled:after{
+	-webkit-filter: opacity(0.4);
+}
 
 
 /**
@@ -212,6 +255,150 @@ a.button {
 .ptt-details-form textarea {
 	height: 80px;
 	resize: vertical;
+}
+
+.more-fields {
+	height: 40px;
+	overflow: hidden;
+}
+
+.more-link {
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.ptt-form-clients {
+	font-size: 12px;
+}
+
+.ptt-client-field-wrapper {
+	height: 16px;
+	overflow: hidden;
+	margin-left: 10px;
+}
+
+.ptt-client-field-wrapper.unfolded .add-new-client-link,
+.more-fields.unfolded .more-link {
+	display: none;
+}
+
+.add-new-client-link {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.unfolded {
+	height: auto;
+}
+
+.ptt-form-clients input[type="checkbox"] {
+	width: 10px;
+	height: 10px;
+	line-height: normal;
+}
+
+.ptt-form-clients input[type="text"] {
+	width: 100%;
+	margin-bottom: .4em;
+}
+
+.ptt-form-clients > label {
+	margin-bottom: 12px;
+}
+
+.ptt-form-clients .taxonomy-terms-list label {
+	margin-bottom: 8px;
+	font-size: 12px;
+}
+
+.ptt-form-clients .taxonomy-terms-list ul {
+	margin-bottom: 0;
+}
+
+.ptt-form-clients .taxonomy-terms-list li {
+	padding: 0;
+}
+
+.new-tag-input {
+	width: 74%;
+}
+
+.new-tag-add-button {
+	width: 24%;
+	display: inline-block;
+	min-width: 1px;
+	padding: 0 4%;
+}
+
+.tags-list {
+	margin: 7px 0 7px 16px;
+	padding: 0;
+	font-size: 12px;
+	overflow: auto;
+}
+
+.tags-list > span {
+	float: left;
+	margin-right: 25px;
+	font-size: 13px;
+	line-height: 1.8em;
+	cursor: default;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.unfolded .tags-list .tag-delete-button {
+	position: absolute;
+	width: 23px;
+	min-width: 1px;
+	height: 23px;
+	border: none;
+	margin: 0 0 0 -18px;
+	padding: 0;
+	background: 0 0;
+	cursor: pointer;
+	text-indent: 0;
+}
+
+.tags-list .tag-delete-button .remove-tag-icon::before {
+	margin-left: 2px;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: 1px solid #ccc;
+	line-height: 1.28;
+}
+
+.tags-list .tag-delete-button .remove-tag-icon::before {
+	background: 0 0;
+	color: #ccc;
+	content: "x";
+	display: block;
+	speak: none;
+	height: 10px;
+	width: 10px;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 7px;
+	font-size: 14px;
+}
+
+.tags-list .tag-delete-button:hover .remove-tag-icon::before {
+	color: #888;
+	border-color: #888;
+}
+
+.screen-reader-text, .screen-reader-text span, .ui-helper-hidden-accessible {
+	position: absolute;
+	margin: -1px;
+	padding: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	border: 0;
+	word-wrap: normal !important;
 }
 
 

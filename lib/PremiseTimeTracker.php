@@ -135,12 +135,18 @@ class PremiseTimeTracker extends PremiseWP {
 	 */
 	public function savePremiseTimeTracker( TokenCredentials $tokenCredentials, $ptt_id, $ptt )
 	{
+		// Updated PTT with new term IDs :).
+		$ptt = $this->savePremiseTimeTrackerNewTerms( $tokenCredentials, $ptt_id, $ptt );
+
 		$url = $this->urlPremiseTimeTracker( $ptt_id );
 
 		$body = array(
 			'title' => $ptt['title'],
 			'content' => $ptt['content'],
 			'pwptt_hours' => $ptt['pwptt_hours'],
+			'premise_time_tracker_client' => $ptt['clients'],
+			'premise_time_tracker_project' => $ptt['projects'],
+			'premise_time_tracker_timesheet' => $ptt['timesheets'],
 		);
 
 		if ( isset( $ptt['status'] ) ) {
@@ -149,6 +155,76 @@ class PremiseTimeTracker extends PremiseWP {
 		}
 
 		return $this->saveObject( $tokenCredentials, $url, $body );
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @internal The current user endpoint gives a redirection, so we need to
+	 *     override the HTTP call to avoid redirections.
+	 */
+	public function savePremiseTimeTrackerNewTerms( TokenCredentials $tokenCredentials, $ptt_id, $ptt )
+	{
+		// New Clients.
+		if ( isset( $ptt['clients']['new'] ) ) {
+
+			$url = $this->urlPremiseTimeTrackerClient();
+
+			$ptt['clients'] = $this->savePremiseTimeTrackerNewTerm( $tokenCredentials, $ptt['clients'], $url );
+		}
+
+		// New Projects.
+		if ( isset( $ptt['projects'] ) &&
+			is_array( $ptt['projects'] ) ) {
+
+			$url = $this->urlPremiseTimeTrackerProject();
+
+			$ptt['projects'] = $this->savePremiseTimeTrackerNewTerm( $tokenCredentials, $ptt['projects'], $url );
+		}
+
+		// New Timesheets.
+		if ( isset( $ptt['timesheets'] ) &&
+			is_array( $ptt['timesheets'] ) ) {
+
+			$url = $this->urlPremiseTimeTrackerTimesheet();
+
+			$ptt['timesheets'] = $this->savePremiseTimeTrackerNewTerm( $tokenCredentials, $ptt['timesheets'], $url );
+		}
+
+		// Updated PTT with new IDs :).
+		return $ptt;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @internal The current user endpoint gives a redirection, so we need to
+	 *     override the HTTP call to avoid redirections.
+	 */
+	public function savePremiseTimeTrackerNewTerm( TokenCredentials $tokenCredentials, $terms, $url )
+	{
+		foreach ( (array) $terms as $id => $term ) {
+
+			if ( strpos( $id, 'new' ) !== 0 ) {
+
+				continue;
+			}
+
+			$body = array(
+				'name' => $term,
+			);
+
+			$new_tax_object = $this->saveObject( $tokenCredentials, $url, $body );
+
+			// Update term ID and object.
+			unset( $terms[ $id ] );
+
+			$terms[] = $new_tax_object['id'];
+		}
+
+		return $terms;
 	}
 
 
