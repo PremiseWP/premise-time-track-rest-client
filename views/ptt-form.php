@@ -62,7 +62,7 @@ $timesheets = $args['taxonomies']['timesheets'];
 						<label>
 							<input type="checkbox" name="ptt[clients][]"
 								value="<?php echo $client['id']; ?>" class="checkbox"
-								<?php if ( in_array( $client['id'], $ptt['premise_time_tracker_client'] ) ) echo 'checked'; ?> />
+								<?php if ( $ptt && in_array( $client['id'], $ptt['premise_time_tracker_client'] ) ) echo 'checked'; ?> />
 							<?php echo htmlspecialchars( $client['name'] ); ?>
 						</label>
 					</li>

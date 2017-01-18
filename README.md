@@ -27,6 +27,9 @@ cd premise-time-track-rest-client
 # Install dependencies
 composer install
 
+# Replace the `vendor/league/oauth1-client/scr/Client/Signature/HmacSha1Signature.php`
+# with the one you will find in the root folder.
+
 # Edit the `config.inc.php` file (refer to the `config.inc.sample.php` file)
 
 # Run the client on port 8080

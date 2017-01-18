@@ -144,9 +144,6 @@ class PremiseTimeTracker extends PremiseWP {
 			'title' => $ptt['title'],
 			'content' => $ptt['content'],
 			'pwptt_hours' => $ptt['pwptt_hours'],
-			'premise_time_tracker_client' => $ptt['clients'],
-			'premise_time_tracker_project' => $ptt['projects'],
-			'premise_time_tracker_timesheet' => $ptt['timesheets'],
 		);
 
 		if ( isset( $ptt['status'] ) ) {
@@ -154,6 +151,22 @@ class PremiseTimeTracker extends PremiseWP {
 			$body['status'] = $ptt['status'];
 		}
 
+		// Associate terms.
+		if ( is_array( $ptt['clients'] ) ) {
+
+			$body['premise_time_tracker_client'] = $ptt['clients'];
+		}
+
+		if ( is_array( $ptt['projects'] ) ) {
+
+			$body['premise_time_tracker_project'] = $ptt['projects'];
+		}
+
+		if ( is_array( $ptt['timesheets'] ) ) {
+
+			$body['premise_time_tracker_timesheet'] = $ptt['timesheets'];
+		}
+//var_dump($body);exit;
 		return $this->saveObject( $tokenCredentials, $url, $body );
 	}
 
@@ -167,7 +180,8 @@ class PremiseTimeTracker extends PremiseWP {
 	public function savePremiseTimeTrackerNewTerms( TokenCredentials $tokenCredentials, $ptt_id, $ptt )
 	{
 		// New Clients.
-		if ( isset( $ptt['clients']['new'] ) ) {
+		if ( isset( $ptt['clients'] ) &&
+			is_array( $ptt['clients'] ) ) {
 
 			$url = $this->urlPremiseTimeTrackerClient();
 
@@ -208,6 +222,13 @@ class PremiseTimeTracker extends PremiseWP {
 		foreach ( (array) $terms as $id => $term ) {
 
 			if ( strpos( $id, 'new' ) !== 0 ) {
+
+				continue;
+			}
+
+			if ( $term === '' ) {
+
+				unset( $terms[ $id ] );
 
 				continue;
 			}

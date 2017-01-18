@@ -64,7 +64,8 @@ function addTag() {
 	$('.new-tag-add-button').click(function(){
 
 		var tagInput = $(this).prev('.new-tag-input'),
-			tag = tagInput.val();
+			tag = tagInput.val(),
+			tagValue = tag;
 
 		if ( ! tag ) {
 
@@ -78,7 +79,8 @@ function addTag() {
 		// If tag found in datalist, get ID.
 		dataListTags.each(function(){
 			if ( this.value === tag ) {
-				tagID = this.id;
+				tagValue = this.id;
+				tagID = '';
 			}
 		});
 
@@ -87,7 +89,7 @@ function addTag() {
 				'<span class="remove-tag-icon" aria-hidden="true"></span>' +
 				'<span class="screen-reader-text">Remove term</span>' +
 			'</button>' +
-			'<input type="hidden" name="ptt[' + taxonomy + '][' + tagID + ']" value="' + tag + '" />' +
+			'<input type="hidden" name="ptt[' + taxonomy + '][' + tagID + ']" value="' + tagValue + '" />' +
 			tag +
 		'</span>';
 
