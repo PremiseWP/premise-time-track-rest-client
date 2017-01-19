@@ -152,20 +152,12 @@ class PremiseTimeTracker extends PremiseWP {
 		}
 
 		// Associate terms.
-		if ( is_array( $ptt['clients'] ) ) {
+		$body['premise_time_tracker_client'] = (array) $ptt['clients'];
 
-			$body['premise_time_tracker_client'] = $ptt['clients'];
-		}
+		$body['premise_time_tracker_project'] = (array) $ptt['projects'];
 
-		if ( is_array( $ptt['projects'] ) ) {
+		$body['premise_time_tracker_timesheet'] = (array) $ptt['timesheets'];
 
-			$body['premise_time_tracker_project'] = $ptt['projects'];
-		}
-
-		if ( is_array( $ptt['timesheets'] ) ) {
-
-			$body['premise_time_tracker_timesheet'] = $ptt['timesheets'];
-		}
 //var_dump($body);exit;
 		return $this->saveObject( $tokenCredentials, $url, $body );
 	}

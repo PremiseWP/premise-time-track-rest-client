@@ -9,6 +9,11 @@ This is *also* the repository for a WordPress provider for the [OAuth 1.0a clien
 ## Setup (Server)
 
 On your server, you need the latest [REST API plugin][] and [the OAuth server plugin][oauth] plugins installed.
+Note: the Oauth server plugin **v.0.3.0** has an **error**.
+To fix it, please replace line 736 in the `lib/class-wp-rest-oauth1.php` file:
+```php
+$param_key = $key . '[' . $param_key . ']'; // Handle multi-dimensional array
+```
 
 [REST API plugin]: https://wordpress.org/plugins/rest-api/
 [oauth]: https://github.com/WP-API/OAuth1
