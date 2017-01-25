@@ -50,6 +50,13 @@ $timesheets = $args['taxonomies']['timesheets'];
 	<div class="more-fields">
 		<a href="#" class="more-link unfold">More</a>
 
+		<label>Date:
+			<input type="date" name="ptt[date]"
+				value="<?php echo $ptt ?
+					htmlspecialchars( $ptt['date'] ) :
+					''; ?>" />
+		</label>
+
 		<div class="ptt-form-clients">
 			<label>Clients:</label>
 

@@ -151,6 +151,12 @@ class PremiseTimeTracker extends PremiseWP {
 			$body['status'] = $ptt['status'];
 		}
 
+		if ( isset( $ptt['date'] ) &&
+			$ptt['date'] ) {
+
+			$body['date'] = date( 'c', strtotime( $ptt['date'] . ' 12:00:00' ) );
+		}
+
 		// Associate terms.
 		$body['premise_time_tracker_client'] = (array) $ptt['clients'];
 
