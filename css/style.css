@@ -420,3 +420,14 @@ a.button {
 .ptt-created table {
 	width: 100%;
 }
+
+
+/**
+ * Reset button
+ */
+.reset-link {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 24px;
+}

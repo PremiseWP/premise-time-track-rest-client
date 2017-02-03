@@ -396,7 +396,9 @@ switch ( $step ) {
 	case 'reset':
 		session_destroy();
 
+		return output_page( load_template( 'reset' ), 'Reset page' );
+
 		// Redirect back to the start
-		header("Location: {$here}");
+		//header("Location: {$here}");
 		return;
 }
