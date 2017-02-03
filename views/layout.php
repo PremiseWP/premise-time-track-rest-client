@@ -27,9 +27,12 @@
 			<?php endif; ?>
 
 			<?php echo $content; ?>
-			<a class="reset-link" href="?step=reset" title="Reset">
-				<span class="fa fa-refresh"></span>
-			</a>
+			<?php global $step;
+			if ( $step !== 'reset' ) : ?>
+				<a class="reset-link" href="?step=reset" title="Reset">
+					<span class="fa fa-refresh"></span>
+				</a>
+			<?php endif; ?>
 		</div>
 	</body>
 </html>
