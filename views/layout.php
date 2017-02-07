@@ -30,7 +30,7 @@
 			<?php global $step;
 			if ( $step !== 'reset' ) : ?>
 				<a class="reset-link" href="?step=reset" title="Reset">
-					<span class="fa fa-refresh"></span>
+					<span class="fa fa-chain-broken"></span>
 				</a>
 			<?php endif; ?>
 		</div>
