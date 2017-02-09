@@ -53,7 +53,7 @@ $timesheets = $args['taxonomies']['timesheets'];
 		<label>Date:
 			<input type="date" name="ptt[date]"
 				value="<?php echo $ptt ?
-					htmlspecialchars( $ptt['date'] ) :
+					htmlspecialchars( substr( $ptt['date'], 0, 10 ) ) :
 					''; ?>" />
 		</label>
 

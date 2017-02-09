@@ -27,6 +27,8 @@ function receiveResetMessage(event)
 	// message is to call postMessage on event.source and provide
 	// event.origin as the targetOrigin.
 	event.source.postMessage( 'reset', event.origin );
+
+	window.removeEventListener("message", receiveResetMessage);
 }
 
 window.addEventListener("message", receiveResetMessage, false);

@@ -115,3 +115,22 @@ function deleteTag() {
 		return false;
 	});
 }
+
+
+function receiveEditMessage(event) {
+	console.log(event.origin);
+
+	// Do we trust the sender of this message?  (might be
+	// different from what we originally opened, for example).
+	if (wordpressUrl.indexOf( event.origin ) !== 0)
+		return;
+
+	console.log(event.data);
+
+	// Should be edit URL.
+	if ( event.data !== 'reset' )
+	{
+		// Edit ptt!
+		document.location.href = event.data;
+	}
+}
