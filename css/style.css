@@ -415,6 +415,7 @@ a.button {
 .ptt-created h1,
 .ptt-updated h1 {
 	margin-top: 20px;
+	margin-left: 20px;
 }
 
 .ptt-created p,
@@ -426,6 +427,7 @@ a.button {
 .ptt-created table,
 .ptt-updated table {
 	width: 100%;
+	text-align: center;
 }
 
 
