@@ -18,9 +18,7 @@ if ( strpos( $url, '?' ) ) {
 	$url .= '?';
 }
 
-global $here;
-
-$url .= 'iframe=1&rest-client-url=' . urlencode( $here );
+$url .= 'iframe=1';
 ?>
 <a href="javascript: window.history.go( -1 );" class="button">Back</a>
 <iframe src="<?php echo $url; ?>" class="wordpress-iframe" id="wordpress-iframe"></iframe>
