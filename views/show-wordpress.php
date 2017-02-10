@@ -1,7 +1,7 @@
 <?php
 /**
  * Show Wordpress page template.
- * Embed Wordpress page URL using an iframe.
+ * Embed Wordpress page in an iframe.
  *
  * @package PTTRC
  * @subpackage views

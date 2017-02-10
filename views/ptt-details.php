@@ -6,7 +6,6 @@
  * @subpackage views
  */
 
-/** @var \League\OAuth1\Client\Server\User */
 // $ptts = $args['ptts'];
 $clients = $args['taxonomies']['clients'];
 $projects = $args['taxonomies']['projects'];
@@ -24,29 +23,6 @@ $access_token = $args['tokenCredentials'];
 	<input type="text" name="search-timers" class="search-timers" placeholder="Search timers" />
 	<div class="ajax-results-timers"></div>
 </div>
-
-<?php /*<div class="ptt-details">
-	<div class="count"><?php echo count( $ptts ); ?> Timers found.</div>
-
-	<?php foreach ( $ptts as $ptt ) : ?>
-	<div class="details">
-		<h4><?php echo htmlspecialchars( $ptt['title']['raw'] ); ?>
-			<small><a href="<?php echo htmlspecialchars( $ptt['link'] ); ?>" target="_blank">View post</a> |
-				<a href="?step=ptt-form&amp;ptt-id=<?php echo $ptt['id']; ?>">Edit</a> |
-				<a href="?step=ptt-delete&amp;ptt-id=<?php echo $ptt['id']; ?>">Trash</a></small></h4>
-
-		Time: <?php echo $ptt['pwptt_hours']; ?>
-		<?php echo $ptt['content']['rendered']; ?>
-		<br />
-
-	</div>
-	<?php endforeach; ?>
-</div>
-
-
-<p>Connected to <code><?php echo htmlspecialchars( $_SESSION['site_base'] ) ?></code>.
-	<a class="reset" href="?step=reset">Reset?</a></p>*/
-?>
 
 
 <h2 class="title-clients">Clients:</h2>
@@ -149,13 +125,6 @@ function receiveMessage(event)
 	ptt = JSON.stringify( ptt );
 	// console.log(ptt);
 
-	// event.source is window.opener
-	// event.data is "hello there!"
-
-	// Assuming you've verified the origin of the received message (which
-	// you must do in any case), a convenient idiom for replying to a
-	// message is to call postMessage on event.source and provide
-	// event.origin as the targetOrigin.
 	event.source.postMessage( ptt, event.origin );
 }
 

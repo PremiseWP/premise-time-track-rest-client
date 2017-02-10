@@ -6,7 +6,6 @@
  * @subpackage views
  */
 
-/** @var \League\OAuth1\Client\Server\User */
 $ptt = $args['ptt'];
 
 $clients = $args['taxonomies']['clients'];
@@ -172,6 +171,7 @@ $timesheets = $args['taxonomies']['timesheets'];
 </div>
 
 <button type="submit">Submit</button>
+<a href="javascript: window.history.go( -1 );" class="button cancel">Cancel</a>
 
 </form>
 

@@ -28,7 +28,8 @@
 
 			<?php echo $content; ?>
 			<?php global $step;
-			if ( $step !== 'reset' ) : ?>
+			if ( $step !== 'reset' &&
+				$step !== 'show-wordpress' ) : ?>
 				<a class="reset-link" href="?step=reset" title="Reset">
 					<span class="fa fa-chain-broken"></span>
 				</a>

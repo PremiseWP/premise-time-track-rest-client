@@ -118,6 +118,10 @@ a.button {
 	text-decoration: none;
 }
 
+.button.cancel {
+	float: right;
+}
+
 .reset {
 	font-size: 0.8em;
 	opacity: 0.8;
