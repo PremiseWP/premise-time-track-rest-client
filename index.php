@@ -282,8 +282,15 @@ switch ( $step ) {
 			return;
 		}
 
-		// Confirm PTT created.
-		return output_page( load_template( 'ptt-created' ), 'Timer created' );
+		if ( ! $ptt_id ) {
+
+			// Confirm PTT created.
+			return output_page( load_template( 'ptt-created' ), 'Timer created' );
+		} else {
+
+			// Confirm PTT updated.
+			return output_page( load_template( 'ptt-updated' ), 'Timer updated' );
+		}
 
 	case 'ptt-delete':
 		$server = get_server();

@@ -410,18 +410,21 @@ a.button {
 
 
 /**
- * Timer created confirmation page.
+ * Timer created / updated confirmation page.
  */
-.ptt-created h1 {
+.ptt-created h1,
+.ptt-updated h1 {
 	margin-top: 20px;
 }
 
-.ptt-created p {
+.ptt-created p,
+.ptt-updated p {
 	text-align: center;
 	margin: 90px 0 40px;
 }
 
-.ptt-created table {
+.ptt-created table,
+.ptt-updated table {
 	width: 100%;
 }
 
