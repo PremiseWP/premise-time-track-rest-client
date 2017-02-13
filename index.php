@@ -201,7 +201,7 @@ switch ( $step ) {
 
 			if ( $error ) {
 
-				return output_page( load_template( 'ptt-details' ), 'Timer details', $error );
+				return output_page( load_template( 'ptt-details' ), 'Dashboard', $error );
 			}
 		}
 
@@ -213,7 +213,7 @@ switch ( $step ) {
 			$error = $_GET['error'];
 		}
 
-		return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Timer details', $error );
+		return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Dashboard', $error );
 
 	// Step 5: Timer form.
 	case 'ptt-form':
@@ -237,7 +237,7 @@ switch ( $step ) {
 			}
 			catch ( Exception $e ) {
 				$error = $e->getMessage();
-				return output_page( load_template( 'ptt-form' ), 'Timer form', $error );
+				return output_page( load_template( 'ptt-form' ), 'New Timer', $error );
 			}
 		} else {
 
@@ -250,7 +250,7 @@ switch ( $step ) {
 		}
 		catch ( Exception $e ) {
 			$error = $e->getMessage();
-			return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'Timer form', $error );
+			return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'New Timer', $error );
 		}
 		//var_dump($ptt);
 
@@ -260,7 +260,7 @@ switch ( $step ) {
 			$error = $_GET['error'];
 		}
 
-		return output_page( load_template( 'ptt-form', compact( 'ptt', 'taxonomies' ) ), 'Timer form', $error );
+		return output_page( load_template( 'ptt-form', compact( 'ptt', 'taxonomies' ) ), 'New Timer', $error );
 
 	case 'ptt-save':
 		$server = get_server();

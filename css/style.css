@@ -432,11 +432,36 @@ a.button {
 
 
 /**
- * Reset button
+ * Reset button, New tab, Help button.
  */
-.reset-link {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 24px;
+.help-buttons-wrapper {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	font-size: 24px;
+	cursor: pointer;
+	width: 82px;
 }
+
+.help-button {
+	float: right;
+}
+.reset-link,
+.new-tab-link {
+	/*display: none;*/
+	position: absolute;
+	right: -38px;
+}
+
+.help-buttons-wrapper:hover .reset-link {
+	position: fixed;
+	right: 38px;
+	transition: .5s;
+}
+
+.help-buttons-wrapper:hover .new-tab-link {
+	position: fixed;
+	right: 70px;
+	transition: .5s;
+}
+

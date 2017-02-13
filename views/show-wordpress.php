@@ -20,7 +20,7 @@ if ( strpos( $url, '?' ) ) {
 
 $url .= 'iframe=1';
 ?>
-<a href="javascript: window.history.go( -1 );" class="button">Back</a>
+<a href="?step=ptt-details" class="button">Back</a>
 <iframe src="<?php echo $url; ?>" class="wordpress-iframe" id="wordpress-iframe"></iframe>
 <script>
 	// Edit.
