@@ -193,7 +193,7 @@ switch ( $step ) {
 			} elseif ( strpos( $error, '403' ) ) {
 
 				// 403 Sorry, you are not allowed to edit terms in this taxonomy.
-				// This is a Freelancer or an Author.
+				// This is an Author.
 				$taxonomies = false;
 
 				unset( $error );
@@ -250,7 +250,19 @@ switch ( $step ) {
 		}
 		catch ( Exception $e ) {
 			$error = $e->getMessage();
-			return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'New Timer', $error );
+
+			if ( strpos( $error, '403' ) ) {
+
+				// 403 Sorry, you are not allowed to edit terms in this taxonomy.
+				// This is an Author.
+				$taxonomies = false;
+
+				unset( $error );
+			}
+
+			if ( $error ) {
+				return output_page( load_template( 'ptt-form', compact( 'ptt' ) ), 'New Timer', $error );
+			}
 		}
 		//var_dump($ptt);
 
