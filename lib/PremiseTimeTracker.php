@@ -97,6 +97,8 @@ class PremiseTimeTracker extends PremiseWP {
 	 */
 	public function fetchPremiseTimeTrackerTaxonomies( TokenCredentials $tokenCredentials, $force = false )
 	{
+		$taxonomies = false;
+
 		$url = $this->urlPremiseTimeTrackerClient();
 
 		$taxonomies['clients'] = $this->fetchObject( $tokenCredentials, $url, $force );

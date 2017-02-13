@@ -190,9 +190,19 @@ switch ( $step ) {
 			if ( strpos( $error, '404' ) ) {
 				$error = '<a href="https://github.com/PremiseWP/premise-time-track" target="_blank">
 					Premise Time Tracker plugin</a> not found. Please install it and activate it.';
+			} elseif ( strpos( $error, '403' ) ) {
+
+				// 403 Sorry, you are not allowed to edit terms in this taxonomy.
+				// This is a Freelancer or an Author.
+				$taxonomies = false;
+
+				unset( $error );
 			}
 
-			return output_page( load_template( 'ptt-details' ), 'Timer details', $error );
+			if ( $error ) {
+
+				return output_page( load_template( 'ptt-details' ), 'Timer details', $error );
+			}
 		}
 
 		//var_dump($ptts);

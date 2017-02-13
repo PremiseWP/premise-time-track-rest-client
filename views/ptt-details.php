@@ -7,9 +7,12 @@
  */
 
 // $ptts = $args['ptts'];
-$clients = $args['taxonomies']['clients'];
-$projects = $args['taxonomies']['projects'];
-$timesheets = $args['taxonomies']['timesheets'];
+if ( $args['taxonomies'] ) {
+
+	$clients = $args['taxonomies']['clients'];
+	$projects = $args['taxonomies']['projects'];
+	$timesheets = $args['taxonomies']['timesheets'];
+}
 
 /** @var array */
 $auth_urls = $_SESSION['site_auth_urls'];
@@ -25,6 +28,7 @@ $access_token = $args['tokenCredentials'];
 </div>
 
 
+<?php if ( $args['taxonomies'] ) : ?>
 <h2 class="title-clients">Clients:</h2>
 <?php if ( $clients ) : ?>
 	<ul class="taxonomy-terms-list clients">
@@ -74,6 +78,7 @@ $access_token = $args['tokenCredentials'];
 	</ul>
 <?php else : ?>
 	<p class="no-taxonomy-found">No timesheets found.</p>
+<?php endif; ?>
 <?php endif; ?>
 
 
