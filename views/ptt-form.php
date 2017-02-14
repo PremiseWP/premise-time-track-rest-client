@@ -171,9 +171,7 @@ $timesheets = $args['taxonomies']['timesheets'];
 </div>
 
 <button type="submit">Submit</button>
-<a href="?step=ptt-details" class="button cancel">Cancel</a>
+<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" class="button cancel">Cancel</a>
 
 </form>
 
-<?php /*<p>Connected to <code><?php echo htmlspecialchars( $_SESSION['site_base'] ) ?></code>.
-	<a class="reset" href="?step=reset">Reset?</a></p>*/ ?>
