@@ -18,11 +18,14 @@ $(document).ready(function(){
 
 function searchTimers() {
 
+	// Add spinner while loading.
+	$('.ajax-results-timers').show().html( '<i class="fa fa-spinner"></i>' );
+
 	console.log($('.search-timers').val());
 	$.get( '?step=ajax-search-timers&title=' +
 		encodeURIComponent( $('.search-timers').val() ) ).done( function( data ) {
 
-		$('.ajax-results-timers').show().html( data );
+		$('.ajax-results-timers').html( data );
 	});
 }
 
@@ -30,7 +33,7 @@ function ajaxSearchTimers() {
 
 	// Setup before functions.
 	var typingTimer;               // Timer identifier.
-	var doneTypingInterval = 2000; // Time in ms (2 seconds).
+	var doneTypingInterval = 750; // Time in ms (0.75 seconds).
 
 	// On keyup, start the countdown.
 	$('.search-timers').on('keyup', function(){

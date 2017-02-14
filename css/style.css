@@ -201,6 +201,10 @@ a.button {
 	background-color: #fff;
 }
 
+.ajax-results-timers .fa-spinner {
+
+}
+
 .ajax-results-timers p {
 	margin: 0;
 }
