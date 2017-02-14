@@ -171,7 +171,7 @@ $timesheets = $args['taxonomies']['timesheets'];
 </div>
 
 <button type="submit">Submit</button>
-<a href="javascript: window.history.go( -1 );" class="button cancel">Cancel</a>
+<a href="?step=ptt-details" class="button cancel">Cancel</a>
 
 </form>
 
