@@ -197,6 +197,7 @@ a.button {
 	top: 30px;
 	max-height: 280px;
 	overflow: auto;
+	background-color: #fff;
 }
 
 .ajax-results-timers p {
