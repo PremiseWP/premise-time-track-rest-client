@@ -35,7 +35,7 @@ html, body {
 
 .container {
 	max-width: 600px;
-	padding: 15px 19.25px 30px; /* Dashboard */
+	padding: 15px 19.25px 36px; /* Dashboard */
 	margin: 0 auto;
 	position: relative;
 	overflow: visible;
