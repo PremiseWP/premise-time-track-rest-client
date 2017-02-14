@@ -34,12 +34,13 @@ html, body {
 }
 
 .container {
-	max-width: 600px;
+	max-width: 1000px;
 	padding: 4.7% 6% 12%; /* Dashboard */
 	margin: 0 auto;
 	position: relative;
 	overflow: visible;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
