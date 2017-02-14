@@ -19,7 +19,7 @@ $(document).ready(function(){
 function searchTimers() {
 
 	// Add spinner while loading.
-	$('.ajax-results-timers').show().html( '<i class="fa fa-spinner"></i>' );
+	$('.ajax-results-timers').show().html( '<i class="fa fa-spinner fa-spin"></i>' );
 
 	console.log($('.search-timers').val());
 	$.get( '?step=ajax-search-timers&title=' +
