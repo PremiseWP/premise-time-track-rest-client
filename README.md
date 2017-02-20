@@ -109,6 +109,13 @@ RewriteRule ^index\.php$ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 When creating a new Timer and adding a new client / project / timesheet, it may not be displayed right away.
 If you experience this issue, please check your Wordpress installation for _cache plugins_ and deactivate them.
 
+
+### Security rule error
+
+In case the Wordpress page you are trying to view is restricted due to a security rule.
+Please disable any `mod_security` (Apache) rule blocking `iframe` on you Wordpress server.
+
+
 ## License
 
 This project is licensed under the MIT license. See [LICENSE.md](LICENSE.md) for the full license.
