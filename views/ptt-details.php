@@ -14,23 +14,26 @@ if ( $args['taxonomies'] ) {
 	$timesheets = $args['taxonomies']['timesheets'];
 }
 
+if ( $projects && $timesheets ) : ?>
+	<a href="?step=ptt-form" class="button new-timer">New Timer</a>
+	<div class="search-timers-wrapper">
+		<input type="text" name="search-timers" class="search-timers" placeholder="Search timers" />
+		<div class="ajax-results-timers"></div>
+	</div>
+<?php endif;
+
 /** @var array */
 $auth_urls = $_SESSION['site_auth_urls'];
 
 /** @var \League\OAuth1\Client\Credentials\TokenCredentials */
 $access_token = $args['tokenCredentials'];
 
-?>
-<a href="?step=ptt-form" class="button new-timer">New Timer</a>
-<div class="search-timers-wrapper">
-	<input type="text" name="search-timers" class="search-timers" placeholder="Search timers" />
-	<div class="ajax-results-timers"></div>
-</div>
 
+if ( $args['taxonomies'] ) :
 
-<?php if ( $args['taxonomies'] ) : ?>
+if ( $clients !== false ) : ?>
 <h2 class="title-clients">Clients:</h2>
-<?php if ( $clients ) : ?>
+<?php if ( count( $clients ) ) : ?>
 	<ul class="taxonomy-terms-list clients">
 	<?php foreach ( (array) $clients as $client ) : ?>
 
@@ -44,11 +47,13 @@ $access_token = $args['tokenCredentials'];
 	</ul>
 <?php else : ?>
 	<p class="no-taxonomy-found">No clients found.</p>
-<?php endif; ?>
+<?php endif;
+endif;
 
 
+if ( $projects !== false ) : ?>
 <h2>Projects:</h2>
-<?php if ( $projects ) : ?>
+<?php if ( count( $projects ) ) : ?>
 	<ul class="taxonomy-terms-list projects">
 	<?php foreach ( (array) $projects as $project ) : ?>
 
@@ -62,9 +67,12 @@ $access_token = $args['tokenCredentials'];
 	</ul>
 <?php else : ?>
 	<p class="no-taxonomy-found">No projects found.</p>
-<?php endif; ?>
+<?php endif;
+endif;
+
+if ( $timesheets !== false ) : ?>
 <h2>Timesheets:</h2>
-<?php if ( $timesheets ) : ?>
+<?php if ( count( $timesheets ) ) : ?>
 	<ul class="taxonomy-terms-list timesheets">
 	<?php foreach ( (array) $timesheets as $timesheet ) : ?>
 
@@ -78,8 +86,10 @@ $access_token = $args['tokenCredentials'];
 	</ul>
 <?php else : ?>
 	<p class="no-taxonomy-found">No timesheets found.</p>
-<?php endif; ?>
-<?php endif; ?>
+<?php endif;
+endif;
+
+endif; ?>
 
 
 <?php /*<div class="extra-detail">

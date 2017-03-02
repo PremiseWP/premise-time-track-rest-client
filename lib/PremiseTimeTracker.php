@@ -58,6 +58,16 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function urlPremiseTimeTrackerClientSlug( $client_slug )
+	{
+		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_client/?slug=' .
+			$client_slug . '&context=view';
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function urlPremiseTimeTrackerProject( $project_id )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_project/' .
@@ -112,6 +122,36 @@ class PremiseTimeTracker extends PremiseWP {
 		$taxonomies['timesheets'] = $this->fetchObject( $tokenCredentials, $url, $force );
 
 		return $taxonomies;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @internal The current user endpoint gives a redirection, so we need to
+	 *     override the HTTP call to avoid redirections.
+	 */
+	public function fetchPremiseTimeTrackerClientsView( TokenCredentials $tokenCredentials, $force = false )
+	{
+		$clients_view = false;
+
+		$user_details = $this->fetchUserDetails( $tokenCredentials );
+
+		$clients = $user_details['pwptt_clients'];
+
+		foreach ( (array) $clients as $client_slug => $yes ) {
+
+			if ( ! $yes ) {
+
+				continue;
+			}
+
+			$url = $this->urlPremiseTimeTrackerClientSlug( $client_slug );
+
+			$clients_view[] = $this->fetchObject( $tokenCredentials, $url, $force )[0];
+		}
+
+		return $clients_view;
 	}
 
 
