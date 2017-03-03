@@ -28,10 +28,30 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function urlPremiseTimeTrackerByAuthor( $ptt_author )
+	{
+		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker/' .
+			'?author=' . $ptt_author . '&context=edit';
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function urlPremiseTimeTrackerSearch( $ptt_title )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker?context=edit&search=' .
 			rawurlencode( $ptt_title );
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function urlPremiseTimeTrackerSearchLimitToAuthor( $ptt_title, $ptt_author )
+	{
+		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker?context=edit&search=' .
+			rawurlencode( $ptt_title ) . '&author=' . $ptt_author;
 	}
 
 
@@ -87,6 +107,16 @@ class PremiseTimeTracker extends PremiseWP {
 
 	/**
 	 * {@inheritDoc}
+	 */
+	public function urlPremiseTimeTrackerTimesheetByPost( $post_id )
+	{
+		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_timesheet/' .
+			'?post=' . $post_id . '&context=edit';
+	}
+
+
+	/**
+	 * {@inheritDoc}
 	 *
 	 * @internal The current user endpoint gives a redirection, so we need to
 	 *     override the HTTP call to avoid redirections.
@@ -105,9 +135,38 @@ class PremiseTimeTracker extends PremiseWP {
 	 * @internal The current user endpoint gives a redirection, so we need to
 	 *     override the HTTP call to avoid redirections.
 	 */
+	public function fetchPremiseTimeTrackerByAuthor( TokenCredentials $tokenCredentials, $ptt_author = 0, $force = false )
+	{
+		$url = $this->urlPremiseTimeTrackerByAuthor( $ptt_author );
+
+		return $this->fetchObject( $tokenCredentials, $url, $force );
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @internal The current user endpoint gives a redirection, so we need to
+	 *     override the HTTP call to avoid redirections.
+	 */
 	public function fetchPremiseTimeTrackerTaxonomies( TokenCredentials $tokenCredentials, $force = false )
 	{
 		$taxonomies = false;
+
+		$user_details = $this->fetchUserDetails( $tokenCredentials );
+
+		if ( $user_details['pwptt_profile_level'] === 'client' ) {
+
+			// Client.
+			$clients = $this->fetchPremiseTimeTrackerClientsView( $tokenCredentials );
+
+			$taxonomies['clients'] = $clients;
+
+			return $taxonomies;
+		}
+
+		// Freelancer.
+		$is_freelancer = $user_details['pwptt_profile_level'] === 'freelancer';
 
 		$url = $this->urlPremiseTimeTrackerClient();
 
@@ -117,11 +176,50 @@ class PremiseTimeTracker extends PremiseWP {
 
 		$taxonomies['projects'] = $this->fetchObject( $tokenCredentials, $url, $force );
 
-		$url = $this->urlPremiseTimeTrackerTimesheet();
+		if ( $is_freelancer ) {
 
-		$taxonomies['timesheets'] = $this->fetchObject( $tokenCredentials, $url, $force );
+			// Freelancer: deny access to others Timesheets.
+			// Check each Timesheet to see if has any Freelancer's posts.
+			$taxonomies['timesheets'] = $this->fetchPremiseTimeTrackerTimesheetsFreelancer( $tokenCredentials );
+
+		} else {
+
+			$url = $this->urlPremiseTimeTrackerTimesheet();
+
+			$taxonomies['timesheets'] = $this->fetchObject( $tokenCredentials, $url, $force );
+		}
 
 		return $taxonomies;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @internal The current user endpoint gives a redirection, so we need to
+	 *     override the HTTP call to avoid redirections.
+	 */
+	public function fetchPremiseTimeTrackerTimesheetsFreelancer( TokenCredentials $tokenCredentials, $force = false )
+	{
+		$timesheets = false;
+
+		$user_details = $this->fetchUserDetails( $tokenCredentials );
+
+		$my_posts = $this->fetchPremiseTimeTrackerByAuthor( $tokenCredentials, $user_details['id'], $force );
+
+		foreach ( (array) $my_posts as $post ) {
+
+			$url = $this->urlPremiseTimeTrackerTimesheetByPost( $post['id'] );
+
+			$timesheets_post = $this->fetchObject( $tokenCredentials, $url, $force );
+
+			foreach ( (array) $timesheets_post as $timesheet ) {
+
+				$timesheets[ $timesheet['id'] ] = $timesheet;
+			}
+		}
+
+		return $timesheets;
 	}
 
 
@@ -163,7 +261,23 @@ class PremiseTimeTracker extends PremiseWP {
 	 */
 	public function searchPremiseTimeTracker( TokenCredentials $tokenCredentials, $ptt_title, $force = false )
 	{
-		$url = $this->urlPremiseTimeTrackerSearch( $ptt_title );
+		$user_details = $this->fetchUserDetails( $tokenCredentials );
+
+		if ( $user_details['pwptt_profile_level'] === 'client' ) {
+
+			// Client.
+			return false;
+		}
+
+		// Freelancer.
+		if ( $user_details['pwptt_profile_level'] === 'freelancer' ) {
+
+			$url = $this->urlPremiseTimeTrackerSearchLimitToAuthor( $ptt_title, $user_details['id'] );
+
+		} else {
+
+			$url = $this->urlPremiseTimeTrackerSearch( $ptt_title );
+		}
 
 		return $this->fetchObject( $tokenCredentials, $url, $force );
 	}
@@ -206,7 +320,7 @@ class PremiseTimeTracker extends PremiseWP {
 
 		$body['premise_time_tracker_timesheet'] = (array) $ptt['timesheets'];
 
-//var_dump($body);exit;
+		//var_dump($body);exit;
 		return $this->saveObject( $tokenCredentials, $url, $body );
 	}
 

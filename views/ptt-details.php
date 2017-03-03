@@ -9,9 +9,9 @@
 // $ptts = $args['ptts'];
 if ( $args['taxonomies'] ) {
 
-	$clients = $args['taxonomies']['clients'];
-	$projects = $args['taxonomies']['projects'];
-	$timesheets = $args['taxonomies']['timesheets'];
+	$clients = isset( $args['taxonomies']['clients'] ) ? $args['taxonomies']['clients'] : false;
+	$projects = isset( $args['taxonomies']['projects'] ) ? $args['taxonomies']['projects'] : false;
+	$timesheets = isset( $args['taxonomies']['timesheets'] ) ? $args['taxonomies']['timesheets'] : false;
 }
 
 if ( $projects && $timesheets ) : ?>

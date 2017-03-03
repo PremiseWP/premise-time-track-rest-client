@@ -190,15 +190,6 @@ switch ( $step ) {
 			if ( strpos( $error, '404' ) ) {
 				$error = '<a href="https://github.com/PremiseWP/premise-time-track" target="_blank">
 					Premise Time Tracker plugin</a> not found. Please install it and activate it.';
-			} elseif ( strpos( $error, '403' ) ) {
-
-				// 403 Sorry, you are not allowed to edit terms in this taxonomy.
-				// This is a Client.
-				$taxonomies = array( 'projects' => false, 'timesheets' => false );
-
-				$taxonomies['clients'] = $server->fetchPremiseTimeTrackerClientsView( $tokenCredentials );
-
-				unset( $error );
 			}
 
 			if ( $error ) {
