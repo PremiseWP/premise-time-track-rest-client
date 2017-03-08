@@ -61,12 +61,18 @@ elseif ( isset( $_GET['site_base'] )
 
 	// http://localhost:8080/?site_base=http%3A%2F%2Flocalhost%2Ftest%2Fpremisesplitview%2F&client_key=I9aT2lBzYE2n&client_secret=0WwKpqHwgoVOgwwI7HgyjdAItd4DLZd8wEIQ2R6eRp0Lvqd8&token_credentials=O%3A49%3A%22League%5COAuth1%5CClient%5CCredentials%5CTokenCredentials%22%3A2%3A%7Bs%3A13%3A%22%00%2A%00identifier%22%3Bs%3A24%3A%229xMnHuPSmJrLKaWlyEDBytRu%22%3Bs%3A9%3A%22%00%2A%00secret%22%3Bs%3A48%3A%22z66bCzlBQX9smdjsx3ROS89ltMq7UZaej6YJ56dC3FmiZDbg%22%3B%7D
 
-	$site = Discovery\discover( $_GET['site_base'] );//http%3A%2F%2Flocalhost%2Ftest%2Fpremisesplitview%2F
-	$_SESSION['site_base'] = $site->getIndexURL();
-	$_SESSION['site_auth_urls'] = $site->getAuthenticationData( 'oauth1' );
+	try {
+		$site = Discovery\discover( $_GET['site_base'] );//http%3A%2F%2Flocalhost%2Ftest%2Fpremisesplitview%2F
 
-	// Go to Step 4 directly.
-	$step = 'ptt-details';
+		$_SESSION['site_base'] = $site->getIndexURL();
+		$_SESSION['site_auth_urls'] = $site->getAuthenticationData( 'oauth1' );
+
+		// Go to Step 4 directly.
+		$step = 'ptt-details';
+	}
+	catch (Exception $e) {
+		$step = '';
+	}
 }
 
 
