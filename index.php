@@ -185,8 +185,10 @@ switch ( $step ) {
 		// Retrieve our token credentials. From here, it's play time!
 		$tokenCredentials = unserialize( $_SESSION['token_credentials'] );
 
+		$error = NULL;
 		try {
-			// $ptts = $server->fetchPremiseTimeTracker( $tokenCredentials );
+			$ptts = $server->fetchPremiseTimeTracker( $tokenCredentials );
+			var_dump($ptts);
 			$taxonomies = $server->fetchPremiseTimeTrackerTaxonomies( $tokenCredentials );
 		}
 		catch ( Exception $e ) {

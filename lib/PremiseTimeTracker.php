@@ -68,7 +68,7 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function urlPremiseTimeTrackerClient( $client_id )
+	public function urlPremiseTimeTrackerClient( $client_id = '' )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_client/' .
 			( $client_id ? '/' . $client_id : '' ) . '?context=edit';
@@ -78,7 +78,7 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function urlPremiseTimeTrackerClientSlug( $client_slug )
+	public function urlPremiseTimeTrackerClientSlug( $client_slug = '' )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_client/?slug=' .
 			$client_slug . '&context=view';
@@ -88,7 +88,7 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function urlPremiseTimeTrackerProject( $project_id )
+	public function urlPremiseTimeTrackerProject( $project_id = '' )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_project/' .
 			( $project_id ? '/' . $project_id : '' ) . '?context=edit';
@@ -98,7 +98,7 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function urlPremiseTimeTrackerTimesheet( $timesheet_id )
+	public function urlPremiseTimeTrackerTimesheet( $timesheet_id = '' )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_timesheet/' .
 			( $timesheet_id ? '/' . $timesheet_id : '' ) . '?context=edit';
@@ -108,7 +108,7 @@ class PremiseTimeTracker extends PremiseWP {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function urlPremiseTimeTrackerTimesheetByPost( $post_id )
+	public function urlPremiseTimeTrackerTimesheetByPost( $post_id = '' )
 	{
 		return rtrim( $this->baseUri, '/' ) . '/wp/v2/premise_time_tracker_timesheet/' .
 			'?post=' . $post_id . '&context=edit';

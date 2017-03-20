@@ -26,8 +26,7 @@ if ( $projects && $timesheets ) : ?>
 $auth_urls = $_SESSION['site_auth_urls'];
 
 /** @var \League\OAuth1\Client\Credentials\TokenCredentials */
-$access_token = $args['tokenCredentials'];
-
+$access_token = isset( $args['tokenCredentials'] ) ? $args['tokenCredentials'] : NULL;
 
 if ( $args['taxonomies'] ) :
 
