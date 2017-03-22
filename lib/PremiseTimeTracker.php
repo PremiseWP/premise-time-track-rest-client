@@ -155,7 +155,7 @@ class PremiseTimeTracker extends PremiseWP {
 
 		$user_details = $this->fetchUserDetails( $tokenCredentials );
 
-		/*if ( $user_details['pwptt_profile_level'] === 'client' ) {
+		if ( $user_details['pwptt_profile_level'] === 'client' ) {
 
 			// Client.
 			$clients = $this->fetchPremiseTimeTrackerClientsView( $tokenCredentials );
@@ -163,7 +163,7 @@ class PremiseTimeTracker extends PremiseWP {
 			$taxonomies['clients'] = $clients;
 
 			return $taxonomies;
-		}*/
+		}
 
 		// Freelancer.
 		$is_freelancer = $user_details['pwptt_profile_level'] === 'freelancer';
@@ -176,18 +176,18 @@ class PremiseTimeTracker extends PremiseWP {
 
 		$taxonomies['projects'] = $this->fetchObject( $tokenCredentials, $url, $force );
 
-		/*if ( $is_freelancer ) {
+		if ( $is_freelancer ) {
 
 			// Freelancer: deny access to others Timesheets.
 			// Check each Timesheet to see if has any Freelancer's posts.
 			$taxonomies['timesheets'] = $this->fetchPremiseTimeTrackerTimesheetsFreelancer( $tokenCredentials );
 
-		} else {*/
+		} else {
 
 			$url = $this->urlPremiseTimeTrackerTimesheet();
 
 			$taxonomies['timesheets'] = $this->fetchObject( $tokenCredentials, $url, $force );
-		//}
+		}
 
 		return $taxonomies;
 	}
@@ -201,7 +201,7 @@ class PremiseTimeTracker extends PremiseWP {
 	 */
 	public function fetchPremiseTimeTrackerTimesheetsFreelancer( TokenCredentials $tokenCredentials, $force = false )
 	{
-		$timesheets = false;
+		$timesheets = array();
 
 		$user_details = $this->fetchUserDetails( $tokenCredentials );
 

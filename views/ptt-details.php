@@ -14,7 +14,7 @@ if ( $args['taxonomies'] ) {
 	$timesheets = isset( $args['taxonomies']['timesheets'] ) ? $args['taxonomies']['timesheets'] : false;
 }
 
-if ( $projects && $timesheets ) : ?>
+if ( $projects !== false && $timesheets !== false ) : ?>
 	<a href="?step=ptt-form" class="button new-timer">New Timer</a>
 	<div class="search-timers-wrapper">
 		<input type="text" name="search-timers" class="search-timers" placeholder="Search timers" />
