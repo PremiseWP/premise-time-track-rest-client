@@ -57,7 +57,7 @@ This step will be skipped if you set the address in the `config.inc.php` file.
 
 We use this URL to find the API by checking for a `Link` header with the link relation (`rel`) set to `https://api.w.org/`. We use [the existing library][discovery-php] for this to simplify the code.
 
-Once we have the API URL, we request it, which gives us back the index for the site's API. We then check the index to make sure OAuth 1.0a is supported (by checking `authentication.oauth1`), and get the links from there. (These are displayed in the footer of step 2 to help debugging and developing.)
+Once we have the API URL, we request it, which gives us back the index for the site's API. We then check the index to make sure OAuth 1.0a is supported (by checking `authentication.oauth1`), and get the links from there.
 
 [discovery-php]: https://github.com/WP-API/discovery-php
 

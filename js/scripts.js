@@ -7,6 +7,13 @@
 
 $(document).ready(function(){
 
+	$('.ptt-details-form input[type="text"]').focus(function(){
+		$(this).click(function(e){
+			e.stopPropagation();
+			return false;
+		});
+	});
+
 	ajaxSearchTimers();
 
 	unfoldLinks();
