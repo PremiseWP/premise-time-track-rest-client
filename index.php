@@ -185,11 +185,12 @@ switch ( $step ) {
 		// Retrieve our token credentials. From here, it's play time!
 		$tokenCredentials = unserialize( $_SESSION['token_credentials'] );
 
+		$premise_time_tracker_response = array();
 		$error = NULL;
+
 		try {
-			$ptts = $server->fetchPremiseTimeTracker( $tokenCredentials );
-			var_dump($ptts);
-			$taxonomies = $server->fetchPremiseTimeTrackerTaxonomies( $tokenCredentials );
+			$premise_time_tracker_response['posts'] = $server->fetchPremiseTimeTracker( $tokenCredentials );
+			$premise_time_tracker_response['taxonomies'] = $server->fetchPremiseTimeTrackerTaxonomies( $tokenCredentials );
 		}
 		catch ( Exception $e ) {
 			$error = $e->getMessage();
@@ -201,20 +202,23 @@ switch ( $step ) {
 			}
 
 			if ( $error ) {
-
-				return output_page( load_template( 'ptt-details' ), 'Dashboard', $error );
+				echo json_encode( (array) $error );
+				return;
+				// return output_page( load_template( 'ptt-details' ), 'Dashboard', $error );
 			}
 		}
-
-		//var_dump($ptts);
 
 		if ( isset( $_GET['error'] )
 			&& $_GET['error'] ) {
 
-			$error = $_GET['error'];
+			echo json_encode( (array) $_GET['error'] );
+			return;
 		}
+		header('Content-Type: application/json');
+		echo json_encode( $premise_time_tracker_response );
+		return;
 
-		return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Dashboard', $error );
+		// return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Dashboard', $error );
 
 	// Step 5: Timer form.
 	case 'ptt-form':
