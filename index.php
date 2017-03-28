@@ -5,6 +5,7 @@
  * @package PTTRC
  */
 
+
 namespace WP_REST\ExampleClient\WebDemo;
 
 use Exception;
@@ -12,6 +13,7 @@ use WordPress\Discovery;
 use WP_REST\ExampleClient;
 
 //error_reporting( E_ALL );
+header("Access-Control-Allow-Origin: *");
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -48,12 +50,10 @@ if ( ! $step
 	// Go to Step 4 directly.
 	$step = 'ptt-details';
 }
-
 elseif ( isset( $_GET['site_base'] )
 	&& isset( $_GET['client_key'] )
 	&& isset( $_GET['client_secret'] )
-	&& isset( $_GET['token_credentials'] ) )
-{
+	&& isset( $_GET['token_credentials'] ) ) {
 	// Recreate session.
 	$_SESSION['client_key'] = $_GET['client_key'];//I9aT2lBzYE2n
 	$_SESSION['client_secret'] = $_GET['client_secret'];//0WwKpqHwgoVOgwwI7HgyjdAItd4DLZd8wEIQ2R6eRp0Lvqd8
@@ -164,6 +164,7 @@ switch ( $step ) {
 		// ones - they're irrelevant at this stage.
 		unset($_SESSION['temporary_credentials']);
 		$_SESSION['token_credentials'] = serialize($tokenCredentials);
+
 		session_write_close();
 
 		// Redirect to the ptt page
@@ -216,9 +217,8 @@ switch ( $step ) {
 		}
 		header('Content-Type: application/json');
 		echo json_encode( $premise_time_tracker_response );
-		return;
 
-		// return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Dashboard', $error );
+		return output_page( load_template( 'ptt-details', compact( 'taxonomies' ) ), 'Dashboard', $error );
 
 	// Step 5: Timer form.
 	case 'ptt-form':
