@@ -177,10 +177,15 @@ switch ( $step ) {
 		unset($_SESSION['temporary_credentials']);
 		$_SESSION['token_credentials'] = serialize($tokenCredentials);
 
+		var_dump($_SESSION['token_credentials']);
+		exit;
+
 		session_write_close();
 
+		return output_page( load_template( 'credential-form' ), 'Discover', $error );
+
 		// Redirect to the ptt page
-		header("Location: {$_SESSION['site_referrer']}"); // {$here}?step=ptt-details
+		header("Location: {$here}?step=ptt-details"); // {$here}?step=ptt-details
 		return;
 
 	// Step 4: Retrieve details
