@@ -105,6 +105,7 @@ switch ( $step ) {
 			$error = sprintf( "Error while discovering: %s.", htmlspecialchars( $e->getMessage() ) );
 			return output_page( load_template( 'discovery-form' ), 'Discover', $error );
 		}
+
 		if ( empty( $site ) ) {
 			$error = sprintf( "Couldn't find the API at <code>%s</code>.", htmlspecialchars( $uri ) );
 			return output_page( load_template( 'discovery-form' ), 'Discover', $error );
@@ -117,7 +118,14 @@ switch ( $step ) {
 		$_SESSION['site_base'] = $site->getIndexURL();
 		$_SESSION['site_auth_urls'] = $site->getAuthenticationData( 'oauth1' );
 
-		return output_page( load_template( 'credential-form' ) );
+		// return output_page( load_template( 'credential-form' ) );
+
+		$response = array(
+			'site_base' => $_SESSION['site_base'],
+			'site_auth_urls' => $_SESSION['site_auth_urls']
+		);
+		echo json_encode( $response );
+		exit();
 
 	// Step 2: Pre-Authorization
 	case 'preauth':
@@ -125,8 +133,12 @@ switch ( $step ) {
 			return output_page( load_template( 'discovery-form' ) );
 		}
 
+		$_SESSION['site_base'] = $_GET['site_base'];
+		$_SESSION['site_auth_urls'] = json_decode( $_GET['site_auth_urls'] );
 		$_SESSION['client_key'] = $_GET['client_key'];
 		$_SESSION['client_secret'] = $_GET['client_secret'];
+
+		$_SESSION['site_referrer'] = $_GET['site_referrer'];
 
 		$server = get_server();
 
@@ -168,7 +180,7 @@ switch ( $step ) {
 		session_write_close();
 
 		// Redirect to the ptt page
-		header("Location: {$here}?step=ptt-details");
+		header("Location: {$_SESSION['site_referrer']}"); // {$here}?step=ptt-details
 		return;
 
 	// Step 4: Retrieve details
